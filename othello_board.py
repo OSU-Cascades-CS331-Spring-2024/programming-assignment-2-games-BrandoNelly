@@ -106,6 +106,15 @@ class OthelloBoard(Board):
                 if self.is_cell_empty(c, r) and self.is_legal_move(c, r, symbol):
                     return True
         return False
+    
+
+    def total_legal_moves(self, symbol):
+        list = []
+        for c in range (0, self.cols):
+            for r in range (0, self.rows):
+                if self.is_cell_empty(c, r) and self.is_legal_move(c, r, symbol):
+                    list.append((c,r))
+        return list
 
     def count_score(self, symbol):
         score = 0

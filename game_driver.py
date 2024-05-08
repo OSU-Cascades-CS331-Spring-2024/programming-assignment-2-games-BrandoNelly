@@ -8,6 +8,10 @@ from othello_board import OthelloBoard
 
 class GameDriver:
     def __init__(self, p1type, p2type, num_rows, num_cols):
+
+        self.p1_type = p1type
+        self.p2_type = p2type
+
         if p1type.lower() in "human":
             self.p1 = HumanPlayer('X')
         elif p1type.lower() in "minimax" or p1type in "ai":
@@ -79,9 +83,16 @@ class GameDriver:
             print("Player 2 Wins!")
 
 
+        if self.p1_type in "minimax" or self.p1_type in "ai":
+            print("Player 1 Avg Decision Time: " , self.p1.average_time())
+
+        if self.p2_type in "minimax" or self.p2_type in "ai":
+            print("Player 2 Avg Decision Time: " , self.p2.average_time())        
+
+
 if __name__ == "__main__":
     if(len(sys.argv)) != 3:
         print("Usage: python3 game_driver.py <player1 type> <player2 type>")
         exit(1)
-    game = GameDriver(sys.argv[1], sys.argv[2], 4, 4)
+    game = GameDriver(sys.argv[1], sys.argv[2], 8, 8)
     game.run()
